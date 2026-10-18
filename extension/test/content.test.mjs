@@ -16,7 +16,7 @@ function harness(selection=null) {
   const requests=[],tasks=[],intervals=[],hosts=[];
   let listing={title:"RAM DDR4 16GB",price:2000,source:{title:"h1",price:"json-ld"}};
   const location={href:"https://shopee.co.th/item-a"};
-  const doc={createElement(tag){const e=new Element(tag);if(tag==="cai-price-badge")hosts.push(e);return e;},documentElement:new Element("html")};
+  const doc={createElement(tag){const e=new Element(tag);if(tag==="cai-price-badge")hosts.push(e);return e;},createElementNS(ns,tag){return new Element(tag);},documentElement:new Element("html")};
   const win={top:null,open(){}};win.top=win;
   const ctx={window:win,location,document:doc,URL,Intl,Date,console,
     CAIParse:{extractListing:()=>({...listing,source:{...listing.source}}),parseTitle:()=>({category:"RAM"}),listingWarnings:()=>({ambiguous:false}),shopSelection:()=>selection},
