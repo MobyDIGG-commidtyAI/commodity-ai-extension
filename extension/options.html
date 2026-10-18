@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Commodity AI: Settings</title>
+  <style>
+    :root { --ink: #15181c; --muted: #4a5260; --line: #dde1e6; --paper: #fdfdfc; --focus: #1d4ed8; --ok: #166534; --bad: #9f1d1d; }
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: 32px 16px; background: #f3f4f6; color: var(--ink);
+      font: 15px/1.55 "Noto Sans Thai", "Sukhumvit Set", "Leelawadee UI", "Thonburi", system-ui, -apple-system, "Segoe UI", sans-serif; }
+    main { max-width: 520px; margin: 0 auto; padding: 24px; background: var(--paper); border: 1px solid var(--line); border-radius: 10px; }
+    h1 { margin: 0 0 4px; font-size: 20px; }
+    p { margin: 0 0 16px; color: var(--muted); font-size: 14px; }
+    label { display: block; margin-bottom: 6px; font-weight: 600; }
+    input { width: 100%; padding: 9px 11px; border: 1px solid #b9bfc7; border-radius: 6px; font: inherit; color: inherit; background: #fff; }
+    input:focus-visible, button:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+    .actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+    button { padding: 8px 14px; border: 1px solid #b9bfc7; border-radius: 6px; background: #fff; color: var(--ink); font: inherit; font-weight: 600; cursor: pointer; }
+    button.primary { background: var(--ink); border-color: var(--ink); color: #fff; }
+    #status { min-height: 1.5em; margin-top: 14px; font-size: 14px; }
+    #status[data-kind="ok"] { color: var(--ok); }
+    #status[data-kind="bad"] { color: var(--bad); }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Commodity AI settings</h1>
+    <p>Check GPU, RAM and SSD evidence on Shopee and Lazada. All displayed prices use THB.</p>
+    <form id="form">
+      <label for="apiBase">API address</label>
+      <input id="apiBase" name="apiBase" type="url" required placeholder="http://localhost:8000" autocomplete="off" spellcheck="false">
+      <div class="actions">
+        <button class="primary" type="submit">Save</button>
+        <button id="test" type="button">Test connection</button>
+        <button id="reset" type="button">Reset to default</button>
+      </div>
+    </form>
+    <div id="status" role="status" aria-live="polite"></div>
+  </main>
+  <script src="options.js"></script>
+</body>
+</html>

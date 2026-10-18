@@ -1,0 +1,43 @@
+{
+  "manifest_version": 3,
+  "name": "Commodity AI: Price Check",
+  "version": "0.2.6",
+  "description": "Check GPU, RAM and SSD prices, historical buying timing and the next 90-day outlook. Prices in THB.",
+  "permissions": [
+    "storage"
+  ],
+  "host_permissions": [
+    "*://*.shopee.co.th/*",
+    "*://shopee.co.th/*",
+    "*://*.lazada.co.th/*",
+    "*://lazada.co.th/*",
+    "http://localhost:8000/*",
+    "http://127.0.0.1:8000/*",
+    "http://localhost:8011/*",
+    "http://127.0.0.1:8011/*",
+    "https://*.run.app/*",
+    "https://*.up.railway.app/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.shopee.co.th/*",
+        "*://shopee.co.th/*",
+        "*://*.lazada.co.th/*",
+        "*://lazada.co.th/*"
+      ],
+      "js": [
+        "parse.js",
+        "content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  }
+}
