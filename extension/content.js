@@ -41,7 +41,15 @@
       }
     } catch (_) { /* system font fallback */ }
   }
-  function closeIcon() {
+  // News pressure from the daily judge (context only, not a forecast); shown when the API has a scored item.
+  function newsSignal(n) {
+    if (!n || n.status !== "SCORED") return null;
+    const label = n.direction === "UP" ? "Upward pressure" : n.direction === "DOWN" ? "Downward pressure" : "No clear pressure";
+    const score = (n.pressure > 0 ? "+" : "") + Number(n.pressure).toFixed(2);
+    return el("div", {class:"signal"}, el("strong", null, "News pressure · " + (n.category === "GPU" ? "GPU" : "DDR5")),
+      label + " (" + score + ")");
+  }
+    function closeIcon() {
     const NS = "http://www.w3.org/2000/svg", svg = document.createElementNS(NS, "svg"), path = document.createElementNS(NS, "path");
     for (const [k, v] of [["viewBox", "0 0 14 14"], ["aria-hidden", "true"], ["fill", "none"]]) svg.setAttribute(k, v);
     for (const [k, v] of [["d", "M2 2l10 10M12 2L2 12"], ["stroke", "currentColor"], ["stroke-width", "1.8"], ["stroke-linecap", "round"]]) path.setAttribute(k, v);
@@ -86,6 +94,7 @@
       a.diff_pct!=null ? el("div",{class:"note"},Math.abs(a.diff_pct).toFixed(1)+"% "+(a.diff_pct<0?"below":"above")+" reference midpoint") : el("div",{class:"note"},a.reason),
       el("div",{class:"signal"},el("strong",null,"Buying timing"),d.seasonality.label),
       el("div",{class:"signal"},el("strong",null,"Next 90 days · "+(o.status==="validated_forecast"?"Forecast":o.status==="scenario"?"Scenario":"Unavailable")),o.label),
+      newsSignal(d.news_judge),
       el("div",{class:"note"},"Observed: "+date(e.last_observed_date)+" · Confidence: "+(e.confidence || "none")),
       e.stale ? el("div",{class:"note"},"Older reference — historical comparison only") : null,
       a.provisional ? el("div",{class:"note"},a.warnings?.join(" ")||"Provisional comparison; check the product option.") : null,
