@@ -104,3 +104,15 @@ test("dismissal persists on the same product page",()=>{
   const count=h.hosts.length;h.requests[0].cb(reply());
   assert.equal(h.hosts.length,count);
 });
+
+test("scored news judge adds one context line; other statuses add nothing",()=>{
+  const h=harness();h.flush();
+  const r=reply();r.data.news_judge={status:"SCORED",category:"DDR5",direction:"UP",pressure:0.62};
+  h.requests[0].cb(r);
+  assert.match(h.hosts.at(-1).shadow.text,/News pressure · DDR5/);
+  assert.match(h.hosts.at(-1).shadow.text,/Upward pressure \(\+0\.62\)/);
+  const h2=harness();h2.flush();
+  const r2=reply();r2.data.news_judge={status:"NO_TEXT",category:"GPU"};
+  h2.requests[0].cb(r2);
+  assert.doesNotMatch(h2.hosts.at(-1).shadow.text,/News pressure/);
+});

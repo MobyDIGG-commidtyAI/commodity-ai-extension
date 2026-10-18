@@ -1,4 +1,4 @@
-# Commodity AI: Price Check — v0.2.7
+# Commodity AI: Price Check — v0.2.8
 
 An unpacked Chrome/Edge extension for Shopee Thailand and Lazada Thailand.
 All interface text is English; item prices are in THB. Original listing titles
@@ -34,7 +34,8 @@ range is withheld, not replaced by its minimum. Conflicting generations remain
 unassessed unless an explicit description block resolves the selected option.
 The Mall landing page is not a product page.
 
-Version 0.2.7 applies the team theme (black, white and blue; Prompt font, OFL, bundled in
+Version 0.2.8 adds a "News pressure" line for DDR5 and GPUs when the API has a scored item from the
+daily news judge (context only, not a forecast). Version 0.2.7 applies the team theme (black, white and blue; Prompt font, OFL, bundled in
 `fonts/` and exposed to shop pages only as web-accessible font files).
 
 ## Reading the receipt

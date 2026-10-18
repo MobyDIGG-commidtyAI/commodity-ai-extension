@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Commodity AI: Price Check",
-  "version": "0.2.7",
+  "version": "0.2.8",
   "description": "Check GPU, RAM and SSD prices, historical buying timing and the next 90-day outlook. Prices in THB.",
   "permissions": [
     "storage"
